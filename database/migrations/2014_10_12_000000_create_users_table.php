@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('birthday');
             $table->string('token');
-            $table->boolean('activated')->default('false');
+            $table->boolean('activated')->default(false);
             $table->ipAddress('sign_up_ip_address')->nullable();
             $table->ipAddress('confirmed_sign_up_ip_address')->nullable();
             $table->rememberToken();
