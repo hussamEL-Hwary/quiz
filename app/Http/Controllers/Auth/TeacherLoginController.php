@@ -56,4 +56,16 @@ class TeacherLoginController extends Controller
       //if not sucess redirect back with form data excep password
       return redirect()->back()->withInput($request->only('email','remember'));
     }
+
+    /*
+    *this function logs teacher out
+    */
+    public function logout()
+    {
+        $this->guard('teacher')->logout();
+
+        session()->invalidate();
+
+        return redirect('/');
+    }
 }
