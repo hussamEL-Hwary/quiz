@@ -4,20 +4,22 @@
 @section('content')
 <div class="container0">
 	<section id="content">
-		<form action="">
-			<h1>Login Form</h1>
-			<div>
-				<input type="text" placeholder="Username" required="" id="username" />
+		<form method="post" action="{{ route('teacher.login.submit') }}">
+			{{ csrf_field() }}
+			<h1>Teacher Login</h1>
+				<div>
+				<input type="text" placeholder="Email" required="" id="email" type="email" name="email" value="{{ old('email') }}"/>
 			</div>
+
 			<div>
-				<input type="password" placeholder="Password" required="" id="password" />
+				<input type="password" placeholder="Password" required="" id="password" type="password" name="password" />
 			</div>
 			<div>
 				<input type="submit" value="Log in" /> <br/>
 				<label for="rememberme">
-                <input type="checkbox" /> Remember me.
+                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}/> Remember me.
                 </label>
-				<a href="#">Lost your password?</a>
+				<a href="{{ route('password.request') }}">Lost your password?</a>
 				<a href="#">Register</a>
 
 			</div>
@@ -25,10 +27,10 @@
 		<div class="button">
 			<h6>Or sign up using the following services :</h6><br/> <br/>
 			<a class="twitter" href="#" onclick="myFunction()"></a>
-            <a class="facebook" href="#" onclick="myFunction()"></a>
-            <a class="google" href="#" onclick="myFunction()"></a>
-            <a class="github" href="#" onclick="myFunction()"></a>
-            <a class="instagram" href="#" onclick="myFunction()"></a>
+            <a class="facebook" href="{{route('social.login',['provider' => 'facebook'])}}"onclick="myFunction()"></a>
+            <a class="google" href="{{route('social.login',['provider' => 'google'])}}" onclick="myFunction()"></a>
+            <a class="github" href="{{route('social.login',['provider' => 'github'])}}" onclick="myFunction()"></a>
+            <a class="instagram" href="{{route('social.login',['provider' => 'instagram'])}}" onclick="myFunction()"></a>
 
 
 
