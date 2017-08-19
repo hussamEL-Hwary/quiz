@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('login/social/{provider}','Auth\TeacherSocialController@redirectToProvider')->where(['provider' => 'facebook|google|twitter|github|instagram'])->name('social.login');
+Route::get('login/{provider}/check/','Auth\TeacherSocialController@handleProviderCallback')->name('social.callback');
 
 Route::prefix('teacher')->group(function(){
   Route::get('/login','Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
