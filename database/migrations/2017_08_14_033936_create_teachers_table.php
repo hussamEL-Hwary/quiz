@@ -20,7 +20,7 @@ class CreateTeachersTable extends Migration
           $table->string('last_name');
           $table->string('email')->unique();
           $table->string('password');
-          $table->date('birthday');
+          $table->date('birthday')->nullable();
           $table->string('token');
           $table->boolean('activated')->default(false);
           $table->ipAddress('sign_up_ip_address')->nullable();
