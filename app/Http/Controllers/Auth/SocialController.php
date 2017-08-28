@@ -15,9 +15,9 @@ use App\TeacherSocial;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
 use Session;
-class TeacherSocialController extends Controller
+class SocialController extends Controller
 {
-    use AuthenticatesUsers;
+    //use AuthenticatesUsers;
 
     /**
      * Redirect the user to the provider authentication page.
@@ -25,23 +25,68 @@ class TeacherSocialController extends Controller
      * @return Response
      */
 
-     public function __construct()
-     {
-         $this->middleware('guest:teacher');
-     }
 
 
+    public function redirectToProvider($provider,$type)
+    {
+      Session::put('userType',$type);
+
+      $providerKey = Config::get('services.' . $provider);
+       if (empty($providerKey)) {
+           //return view('pages.status')
+            //   ->with('error','No such provider');
+            return 'No such provider';
+       }
+        return Socialite::driver($provider)->redirect();
+    }
 
     /**
      * Obtain the user information from provider.
      *
      * @return Response
      */
-    public function handleData($socialObject ,$provider)
+    public function handleProviderCallback($provider)
     {
+      $userType=Session::pull('userType');
+      if (Input::get('denied') != '') {
+        return 'uh oh';
+        //  return redirect()->to('login')
+        //    ->with('status', 'danger')
+        //  ->with('message', 'You did not share your profile data with our social app.');
+      }
+        $socialObject = Socialite::driver($provider)->user();
+
+        if($userType=='teacher')
+        {
+          $teacherSocial=new TeacherSocialController;
+          $teacherSocial->handleData($socialObject,$provider);
+            return redirect()->intended(route('teacher.dashboard'));
+          Session::forget('userType');
+        }
+        else if($userType=='student'){
+          $studentSocial = new StudentSocialController;
+          $studentSocial->handleData($socialObject,$provider);
+          return redirect()->intended(route('student.dashboard'));
+          Session::forget('userType');
+        }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         $socialTeacher=null;
         $teacherEmail=$socialObject->email;
         //check if user exist
@@ -93,21 +138,23 @@ class TeacherSocialController extends Controller
           /*
           *login social teacher here
           */
-
+          /*
          Auth::guard('teacher')->login($socialTeacher,false);
-          //return redirect()->intended(route('teacher.dashboard'));
+          return redirect()->intended(route('teacher.dashboard'));
         }
         else {
           //if we found teacher in teacher table
           /*
           *log in teacher here
           */
+          /*
           $socialTeacher=$checkTeacher;
 
           Auth::guard('teacher')->login($socialTeacher,false);
-          //return redirect()->intended(route('teacher.dashboard'));
-        }
+          return redirect()->intended(route('teacher.dashboard'));
 
+        }
+          */
 
     }
 }
