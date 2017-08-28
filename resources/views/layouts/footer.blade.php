@@ -2,7 +2,7 @@
 	<!--FOOTER START-->
 	<footer>
 	<footer class="footer section-padding">
-		<div class="container">
+		<div class="container foo">
 			<div class="row">
 				<div style="visibility: visible; animation-name: zoomIn;" class="col-sm-12 text-center wow zoomIn">
 					<h3>Follow us on</h3>

@@ -27,10 +27,10 @@
 		<div class="button">
 			<h6>Or sign up using the following services :</h6><br/> <br/>
 			<a class="twitter" href="#" onclick="myFunction()"></a>
-            <a class="facebook" href="{{route('social.login',['provider' => 'facebook'])}}"onclick="myFunction()"></a>
-            <a class="google" href="{{route('social.login',['provider' => 'google'])}}" onclick="myFunction()"></a>
-            <a class="github" href="{{route('social.login',['provider' => 'github'])}}" onclick="myFunction()"></a>
-            <a class="instagram" href="{{route('social.login',['provider' => 'instagram'])}}" onclick="myFunction()"></a>
+            <a class="facebook" href="{{route('social.login',['provider' => 'facebook','type'=>'teacher'])}}"onclick="myFunction()"></a>
+            <a class="google" href="{{route('social.login',['provider' => 'google','type'=>'teacher'])}}" onclick="myFunction()"></a>
+            <a class="github" href="{{route('social.login',['provider' => 'github','type'=>'teacher'])}}" onclick="myFunction()"></a>
+            <a class="instagram" href="#" onclick="myFunction()"></a>
 
 
 

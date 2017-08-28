@@ -342,7 +342,7 @@ form:after {
 }
 
 .google:focus {
-   
+
     text-decoration: none;
 }
 
@@ -476,7 +476,7 @@ section-padding
 
 .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
 {
-    
+
 }
 .navbar {
     min-height: inherit;
@@ -510,7 +510,7 @@ section-padding
     padding: 5px;
 }
 
-/* Contact Form */ 
+/* Contact Form */
 .text-field-box {
     background: #fff;
     border: 1px solid #ddd;
@@ -661,7 +661,7 @@ section-padding
 
 .links a:hover{
 
-    
+
     color: #178bb6;
     display: inline-block;
-
+}
