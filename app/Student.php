@@ -16,7 +16,7 @@ class student extends Authenticatable
    * @var array
    */
   protected $fillable = [
-    'first_name','last_name', 'email', 'password','birthday','activated',
+    'first_name','last_name', 'email', 'password','birthday','activated','token',
   ];
 
   /**
@@ -27,4 +27,9 @@ class student extends Authenticatable
   protected $hidden = [
       'password', 'remember_token',
   ];
+
+  public function social()
+  {
+    return $this->hasMany('App\StudentSocial');
+  }
 }

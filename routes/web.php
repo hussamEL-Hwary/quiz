@@ -16,14 +16,22 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/register','Auth\GeneralRegisterController@showRegiterForm')->name('register');
+Route::post('/register','Auth\GeneralRegisterController@call')->name('register.submit');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('login/social/{provider}','Auth\TeacherSocialController@redirectToProvider')->where(['provider' => 'facebook|google|twitter|github|instagram'])->name('social.login');
-Route::get('login/{provider}/check/','Auth\TeacherSocialController@handleProviderCallback')->name('social.callback');
+Route::get('login/social/{provider}/{type}','Auth\SocialController@redirectToProvider')->where(['provider' => 'facebook|google|twitter|github|instagram'],['type'=> 'teacher|student'])->name('social.login');
+Route::get('login/{provider}/check/','Auth\SocialController@handleProviderCallback')->name('social.callback');
 
 Route::prefix('teacher')->group(function(){
   Route::get('/login','Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
   Route::post('/login','Auth\TeacherLoginController@login')->name('teacher.login.submit');
   Route::get('/','TeacherController@index')->name('teacher.dashboard');
   Route::get('/logout','Auth\TeacherLoginController@logout')->name('teacher.logout');
+});
+
+Route::prefix('student')->group(function(){
+  Route::get('/login','Auth\StudentLoginController@showLoginForm')->name('student.login');
+  Route::post('/login','Auth\StudentLoginController@login')->name('student.login.submit');
+  Route::get('/','StudentController@index')->name('student.dashboard');
+  Route::get('/logout','Auth\StudentLoginController@logout');
 });
