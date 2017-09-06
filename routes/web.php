@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('pages.contactus');
 });
-
 Auth::routes();
+//Auth::routes();
 Route::get('/register','Auth\GeneralRegisterController@showRegiterForm')->name('register');
 Route::post('/register','Auth\GeneralRegisterController@call')->name('register.submit');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -27,6 +27,14 @@ Route::prefix('teacher')->group(function(){
   Route::post('/login','Auth\TeacherLoginController@login')->name('teacher.login.submit');
   Route::get('/','TeacherController@index')->name('teacher.dashboard');
   Route::get('/logout','Auth\TeacherLoginController@logout')->name('teacher.logout');
+  Route::get('/createcategory','CategoryController@index')->name('create.category');
+  Route::post('/createcategory','CategoryController@store')->name('category.submit');
+
+  //reset Password routes
+  Route::post('/password/email','Auth\TeacherForgotPasswordController@sendResetLinkEmail')->name('teacher.password.email');
+  Route::post('/password/reset','Auth\TeacherResetPasswordController@reset');
+  Route::get('/password/reset','Auth\TeacherForgotPasswordController@showLinkRequestForm')->name('teacher.password.request');
+  Route::get('/password/reset/{token}','Auth\TeacherResetPasswordController@showResetForm')->name('teacher.password.reset');
 });
 
 Route::prefix('student')->group(function(){
@@ -34,4 +42,11 @@ Route::prefix('student')->group(function(){
   Route::post('/login','Auth\StudentLoginController@login')->name('student.login.submit');
   Route::get('/','StudentController@index')->name('student.dashboard');
   Route::get('/logout','Auth\StudentLoginController@logout');
+
+  //reset Password routes
+  Route::post('/password/email','Auth\StudentForgotPasswordController@sendResetLinkEmail')->name('student.password.email');
+  Route::post('/password/reset','Auth\StudentResetPasswordController@reset');
+  Route::get('/password/reset','Auth\StudentForgotPasswordController@showLinkRequestForm')->name('student.password.request');
+  Route::get('/password/reset/{token}','Auth\StudentResetPasswordController@showResetForm')->name('student.password.reset');
+
 });
