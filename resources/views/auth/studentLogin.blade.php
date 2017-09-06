@@ -14,10 +14,13 @@
 			</div>
 			<div>
 				<input type="submit" value="Log in" /> <br/>
+
 				<label for="rememberme">
-                <input type="checkbox" /> Remember me.
-                </label>
-				<a href="#">Lost your password?</a>
+                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me.
+        </label>
+
+
+				<a href="{{ route('student.password.request') }}">Lost your password?</a>
 				<a href="{{ route('register') }}">Register</a>
 
 			</div>
