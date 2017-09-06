@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\TeacherResetPasswordNotification;
 
 class teacher extends Authenticatable
 {
@@ -34,5 +35,14 @@ class teacher extends Authenticatable
       return $this->hasMany('App\TeacherSocial');
     }
 
+    public function category()
+    {
+      return $this->hasMany('App\Category');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new TeacherResetPasswordNotification($token));
+    }
 
 }
