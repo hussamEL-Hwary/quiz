@@ -5,7 +5,7 @@
   <form method="post" action="{{route('register.submit')}}">
     {{ csrf_field() }}
     <div class="row">
-      <h4>Account</h4>
+      <h4>Create new account</h4>
       <div class="input-group input-group-icon">
         <input type="text" id="first_name" name="first_name" placeholder="First Name"   pattern=".{2,}" value="{{ old('first_name') }}"  required title="2 characters minimum"  />
         <div class="input-icon"><i class="fa fa-user"></i></div>
@@ -68,7 +68,6 @@
       <div>
 
         <div>
-            <label>Captcha </label>
 
             {!! app('captcha')->display() !!}
 

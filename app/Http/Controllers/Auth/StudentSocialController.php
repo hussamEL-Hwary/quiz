@@ -39,7 +39,7 @@ class StudentSocialController extends Controller
      */
     public function handleData($socialObject ,$provider)
     {
-    //return dd($socialObject); 
+    //return dd($socialObject);
 
 
         $socialStudent=null;
