@@ -60,9 +60,9 @@
         <h4>Sign Up As </h4>
         <div class="input-group">
           <input type="radio" name="type" value="teacher" id="teacher" unchecked/>
-          <label for="Teacher">Teacher</label>
+          <label for="teacher">Teacher</label>
           <input type="radio" name="type" value="student" id="student" unchecked/>
-          <label for="Student">Student</label>
+          <label for="student">Student</label>
        </div>
       </div>
       <div>
