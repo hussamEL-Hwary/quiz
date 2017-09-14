@@ -55,6 +55,9 @@ class SocialController extends Controller
         //  ->with('message', 'You did not share your profile data with our social app.');
       }
         $socialObject = Socialite::driver($provider)->user();
+        //$data = app($provider)->tplUser($socialObject);
+        //return dd($socialObject);
+
 
         if($userType=='teacher')
         {

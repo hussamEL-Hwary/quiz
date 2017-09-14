@@ -41,6 +41,10 @@ Route::prefix('teacher')->group(function(){
   Route::get('/setting','TeacherProfileController@showEdit');
   Route::post('/setting','TeacherProfileController@updateProfile');
   Route::post('/account','TeacherProfileController@updateAccount');
+
+  //Quiz
+  Route::get('/quiz','QuizController@show');
+  Route::post('/quiz','QuizController@checkRequirments');
 });
 
 Route::prefix('student')->group(function(){
@@ -54,5 +58,11 @@ Route::prefix('student')->group(function(){
   Route::post('/password/reset','Auth\StudentResetPasswordController@reset');
   Route::get('/password/reset','Auth\StudentForgotPasswordController@showLinkRequestForm')->name('student.password.request');
   Route::get('/password/reset/{token}','Auth\StudentResetPasswordController@showResetForm')->name('student.password.reset');
+
+  //profile
+  Route::get('/profile/{id}','StudentProfileController@show');
+  Route::get('/setting','StudentProfileController@showEdit');
+  Route::post('/setting','StudentProfileController@updateProfile');
+  Route::post('/account','StudentProfileController@updateAccount');
 
 });

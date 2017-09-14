@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Mail\WelcomeTeacher;
 use App\Mail\WelcomeStudent;
+use App\TeacherProfile;
+use App\StudentProfile;
 class GeneralRegisterController extends Controller
 {
 
@@ -70,6 +72,7 @@ class GeneralRegisterController extends Controller
         }
 
         $teacher=$teacherRegister->createTeacher($request->all());
+        $teacher->profile()->save(new TeacherProfile);
         $teacherRegister->teacherLogin($teacher);
         \Mail::to($teacher)->send(new WelcomeTeacher($teacher));
         session()->flash('message','Thanks for Registeration');
@@ -89,6 +92,7 @@ class GeneralRegisterController extends Controller
           ->only('first_name','last_name','email','day','month','year','gender','type'));
         }
         $student=$studentRegister->createStudent($request->all());
+        $student->profile()->save(new StudentProfile);
         $studentRegister->studentLogin($student);
         \Mail::to($student)->send(new WelcomeStudent($student));
         session()->flash('message','Thanks for Registeration');

@@ -15,6 +15,7 @@ use App\StudentSocial;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
 use Session;
+use App\StudentProfile;
 class StudentSocialController extends Controller
 {
     use AuthenticatesUsers;
@@ -82,6 +83,7 @@ class StudentSocialController extends Controller
             $StudentSocialData->social_id=$socialObject->id;
             $StudentSocialData->provider=$provider;
             $newStudent->social()->save($StudentSocialData);
+            $newStudent->profile()->save(new StudentProfile);
             //$StudentSocialData->Student()->save();
             $newStudent->save();
               $socialStudent=$newStudent;

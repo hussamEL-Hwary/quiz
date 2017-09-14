@@ -39,6 +39,10 @@ class student extends Authenticatable
       $this->notify(new StudentResetPasswordNotification($token));
   }
 
+  public function profile()
+  {
+    return $this->hasOne('App\StudentProfile');
+  }
 
 
 }
