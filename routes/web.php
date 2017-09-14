@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('pages.contactus');
+    return view('pages.teacher.teacherprofile');
 });
 Auth::routes();
 //Auth::routes();
@@ -35,6 +35,12 @@ Route::prefix('teacher')->group(function(){
   Route::post('/password/reset','Auth\TeacherResetPasswordController@reset');
   Route::get('/password/reset','Auth\TeacherForgotPasswordController@showLinkRequestForm')->name('teacher.password.request');
   Route::get('/password/reset/{token}','Auth\TeacherResetPasswordController@showResetForm')->name('teacher.password.reset');
+
+  //profile
+  Route::get('/profile/{id}','TeacherProfileController@show');
+  Route::get('/setting','TeacherProfileController@showEdit');
+  Route::post('/setting','TeacherProfileController@updateProfile');
+  Route::post('/account','TeacherProfileController@updateAccount');
 });
 
 Route::prefix('student')->group(function(){

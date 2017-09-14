@@ -45,4 +45,9 @@ class teacher extends Authenticatable
         $this->notify(new TeacherResetPasswordNotification($token));
     }
 
+    public function profile()
+    {
+      return $this->hasOne('App\TeacherProfile');
+    }
+
 }
