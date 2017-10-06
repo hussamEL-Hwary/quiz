@@ -54,7 +54,8 @@ class StudentLoginController extends Controller
          return redirect()->intended(route('student.dashboard'));
       }
       //if not sucess redirect back with form data excep password
-      return redirect()->back()->withInput($request->only('email','remember'));
+      $errors = ['email' => trans('auth.failed')];
+      return redirect()->back()->withInput($request->only('email','remember'))->withErrors($errors);
     }
 
     /*

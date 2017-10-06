@@ -38,9 +38,7 @@ class StudentRegisterController extends Controller
         'last_name'             =>'required|string|min:2|max:30',
         'email'                 => 'required|email|unique:students',
         'password'              => 'required|string|min:6|confirmed',
-        'day'                   => 'required|integer|between:1,31',
-        'month'                 => 'required|integer|between:1,12',
-        'year'                  => 'required|integer|min:1900|max:'.date('Y'),
+        'date'                   => 'required|date',
         'gender'                => 'required',
         'type'                  => 'required',
         'g-recaptcha-response'  => 'required|captcha',
@@ -60,7 +58,7 @@ class StudentRegisterController extends Controller
         'email'       => $data['email'],
         'password'    => bcrypt($data['password']),
         'token'       =>str_random(64),
-        'birthday'    => $data['year'].'-'.$data['month'].'-'.$data['day'],
+        'birthday'    => $data['date'],
         'activated'   =>false,
       ]);
 

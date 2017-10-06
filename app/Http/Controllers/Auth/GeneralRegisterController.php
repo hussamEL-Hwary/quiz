@@ -68,7 +68,7 @@ class GeneralRegisterController extends Controller
             ->back()
             ->withErrors($validResult)
             ->withInput($request
-            ->only('first_name','last_name','email','day','month','year','gender','type'));
+            ->only('first_name','last_name','email','date','gender','type'));
         }
 
         $teacher=$teacherRegister->createTeacher($request->all());
@@ -89,7 +89,7 @@ class GeneralRegisterController extends Controller
           ->back()
           ->withErrors($validResult)
           ->withInput($request
-          ->only('first_name','last_name','email','day','month','year','gender','type'));
+          ->only('first_name','last_name','email','date','gender','type'));
         }
         $student=$studentRegister->createStudent($request->all());
         $student->profile()->save(new StudentProfile);
@@ -103,7 +103,7 @@ class GeneralRegisterController extends Controller
         return redirect()
         ->back()
         ->withInput($request
-        ->only('first_name','last_name','email','day','month','year','gender','type'));
+        ->only('first_name','last_name','email','date','gender','type'));
 
       }
 

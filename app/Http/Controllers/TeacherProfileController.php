@@ -35,9 +35,7 @@ class TeacherProfileController extends Controller
   */
   public function show($id)
   {
-
     try {
-
     $user=$this->getTeacherById($id);
 
     } catch (Exception $e) {
@@ -47,6 +45,10 @@ class TeacherProfileController extends Controller
     return view('pages.teacher.teacherprofile',compact('user'));
   }
 
+   /**
+   *show edit page for teacher
+   *@return teacher
+   */
   public function showEdit()
   {
     //get teacher
@@ -61,6 +63,11 @@ class TeacherProfileController extends Controller
     return view('pages.teacher.editprofile',compact('user'));
   }
 
+  /**
+  *validate teacher profile data
+  *@param data
+  *@return validator
+  */
   public function profileValidator(array $data)
   {
     return Validator::make($data,[
@@ -72,7 +79,11 @@ class TeacherProfileController extends Controller
     ]);
   }
 
-
+  /**
+  *update profile Info
+  *@param request
+  *@return response
+  */
   public function updateProfile(Request $request)
   {
     //get loged in teacher
@@ -118,6 +129,11 @@ class TeacherProfileController extends Controller
     return redirect('teacher/profile/'.$teacherId);
   }
 
+  /**
+  *update teacher account info
+  *@param request
+  *@return response
+  */
   public function updateAccount(Request $request)
   {
     try {

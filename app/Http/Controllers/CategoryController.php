@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth:teacher');
+    $this->middleware('auth:teacher')->except('showAll');
   }
 
 /**
@@ -20,6 +20,12 @@ class CategoryController extends Controller
     return view('pages.teacher.createcategory');
   }
 
+  public function showAll()
+  {
+    $categories=Category::select()->orderBy('name')->get()->toArray();
+    return view('home',compact('categories'));
+  }
+
   /**
   *create new unique category for quizes
   *and save in database
@@ -28,7 +34,8 @@ class CategoryController extends Controller
   public function store()
   {
     $this->validate(request(),[
-      'categoryname' => 'required'
+      'categoryname' => 'required',
+      'description' =>  'max:200'
     ]);
 
       $cateName=strtolower(trim(request('categoryname')));

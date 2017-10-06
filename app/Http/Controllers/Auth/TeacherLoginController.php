@@ -53,8 +53,9 @@ class TeacherLoginController extends Controller
          //if success redirect to teacher homepage
          return redirect()->intended(route('teacher.dashboard'));
       }
-      //if not sucess redirect back with form data excep password
-      return redirect()->back()->withInput($request->only('email','remember'));
+      //if not sucess redirect back with form data and errors
+      $errors = ['email' => trans('auth.failed')];
+      return redirect()->back()->withInput($request->only('email','remember'))->withErrors($errors);
     }
 
     /*

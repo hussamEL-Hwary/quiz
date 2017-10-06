@@ -15,6 +15,7 @@ use App\TeacherSocial;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
 use Session;
+use App\TeacherProfile;
 class TeacherSocialController extends Controller
 {
     use AuthenticatesUsers;
@@ -82,6 +83,7 @@ class TeacherSocialController extends Controller
             $teacherSocialData->social_id=$socialObject->id;
             $teacherSocialData->provider=$provider;
             $newTeacher->social()->save($teacherSocialData);
+            $newTeacher->profile()->save(new TeacherProfile);
             //$teacherSocialData->teacher()->save();
             $newTeacher->save();
               $socialTeacher=$newTeacher;
