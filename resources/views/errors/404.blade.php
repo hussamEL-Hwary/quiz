@@ -3,6 +3,7 @@
     <head>
         <title>404 | Not Found.</title>
 
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <style>
@@ -35,12 +36,18 @@
                 font-size: 72px;
                 margin-bottom: 40px;
             }
+            .but {
+              font-family: cursive;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Not found.</div>
+                <div class="title">Not found</div>
+                <a href="/">
+                <button class='btn btn-success but'>Back To Home </button>
+                </a>
             </div>
         </div>
     </body>
