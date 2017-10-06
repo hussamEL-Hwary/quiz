@@ -1,17 +1,33 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+
+<section class='teacher-home'>
+  <div class='container'>
+    <h2 class='text-center'>Categories</h2>
+
+
+    <div class='row'>
+
+      @foreach($categories as $category)
+      <div class='col-sm-6 col-md-4'>
+        <a class='link' href= '#'>
+          <div class='box'>
+            <h3 class="text-uppercase" >{{$category['name']}}</h3>
+            <p>{{$category['description']}}<p>
+          </div>
+      </a>
+      </div>
+
+      @endforeach
+
+
     </div>
-</div>
+
+
+  </div>
+</section>
+
+
 @endsection
