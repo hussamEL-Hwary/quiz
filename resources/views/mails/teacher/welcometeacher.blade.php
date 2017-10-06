@@ -1,10 +1,10 @@
 @component('mail::message')
 # Introduction
-#Hi, {{$teacher->first_name }} 
+#Hello, {{$teacher->first_name }}
 Thinks for Registeration.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => 'http://localhost:8000/'])
+QuizApp
 @endcomponent
 
 Thanks,<br>

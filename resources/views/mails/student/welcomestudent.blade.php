@@ -1,12 +1,12 @@
 @component('mail::message')
 # Introduction
 
-# Hi, {{$student->first_name}}
-please informe us if you are gaعw.
-The body of your message.
+# Hello, {{$student->first_name}}
 
-@component('mail::button', ['url' => ''])
-Button Text
+Thanks for registeration.
+
+@component('mail::button', ['url' => 'http://localhost:8000/'])
+QuizApp
 @endcomponent
 
 Thanks,<br>
