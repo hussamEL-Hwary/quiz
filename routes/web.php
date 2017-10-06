@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.teacher.teacherprofile');
-});
+Route::get('/','CategoryController@showAll');
 Auth::routes();
 //Auth::routes();
 Route::get('/register','Auth\GeneralRegisterController@showRegiterForm')->name('register');
@@ -25,8 +23,10 @@ Route::get('login/{provider}/check/','Auth\SocialController@handleProviderCallba
 Route::prefix('teacher')->group(function(){
   Route::get('/login','Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
   Route::post('/login','Auth\TeacherLoginController@login')->name('teacher.login.submit');
-  Route::get('/','TeacherController@index')->name('teacher.dashboard');
+  Route::get('/','CategoryController@showAll')->name('teacher.dashboard');
   Route::get('/logout','Auth\TeacherLoginController@logout')->name('teacher.logout');
+
+  //category
   Route::get('/createcategory','CategoryController@index')->name('create.category');
   Route::post('/createcategory','CategoryController@store')->name('category.submit');
 
@@ -45,12 +45,14 @@ Route::prefix('teacher')->group(function(){
   //Quiz
   Route::get('/quiz','QuizController@show');
   Route::post('/quiz','QuizController@checkRequirments');
+  Route::get('/questions/create','QuizController@showQuestionsForm')->name('teacher.creat.questions');
+  Route::post('/questions/create','QuizController@store')->name('teacher.save.quiz');
 });
 
 Route::prefix('student')->group(function(){
   Route::get('/login','Auth\StudentLoginController@showLoginForm')->name('student.login');
   Route::post('/login','Auth\StudentLoginController@login')->name('student.login.submit');
-  Route::get('/','StudentController@index')->name('student.dashboard');
+  Route::get('/','CategoryController@showAll')->name('student.dashboard');
   Route::get('/logout','Auth\StudentLoginController@logout');
 
   //reset Password routes
