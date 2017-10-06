@@ -4,36 +4,26 @@
  <title></title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
- <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-<script src='https://www.google.com/recaptcha/api.js'></script>
  <link rel="stylesheet" href="/css/bootstrap.min.css">
- <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:600,300|Josefin+Slab:400,700,600italic,600,400italic' rel='stylesheet' type='text/css'>
- <link rel="stylesheet" type="text/css" href="/css/style2.css">
- <link rel="stylesheet" type="text/css" href="/css/style.css">
- <link rel="stylesheet" type="text/css" href="/css/slick-team-slider.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
 
 </head>
 <body>
 
-   @yield('content')
 
-
-  @include('layouts.footer')
+  @include('layouts.nav');
+  @yield('content')
 
 
 
 
   <script src="/js/jquery.min.js"></script>
-  	<script src="/js/jquery.easing.min.js"></script>
-  	<script src="/js/bootstrap.min.js"></script>
-  	<script src="/js/jquery.mixitup.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/js/slick.min.js"></script>
-	<script type="text/javascript" src="/js/custom.js"></script>
-    <script src="/contactform/contactform.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
 
 </body>
-
 </html>
