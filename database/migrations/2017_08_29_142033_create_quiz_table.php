@@ -20,6 +20,7 @@ class CreateQuizTable extends Migration
             $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('qcount');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateTfanswerTable extends Migration
             $table->integer('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('id')->on('quizs');
             $table->integer('question_id')->unsigned();
-            $table->string('question_table');
+            $table->foreign('question_id')->references('id')->on('questions');
             $table->boolean('answer');
             $table->timestamps();
         });
