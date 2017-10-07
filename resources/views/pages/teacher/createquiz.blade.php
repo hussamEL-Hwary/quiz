@@ -18,8 +18,9 @@
   </span>
   @endif
   <select class="form-control" name="categoryName">
-    <option value="math">Math</option>
-    <option value="codeing">codeing</option>
+    @foreach($categories as $category)
+    <option value="{{$category->name}}" class="text-uppercase">{{$category->name}}</option>
+    @endforeach
   </select>
   @if($errors->has('categoryName'))
   <span class="">
