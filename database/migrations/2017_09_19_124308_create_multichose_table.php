@@ -15,7 +15,7 @@ class CreateMultichoseTable extends Migration
     {
         Schema::create('multichose', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('quiz_id')->unsigned();
+            $table->integer('quiz_id')->unsigned()->index();
             $table->foreign('quiz_id')->references('id')->on('quizs');
             $table->integer('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions');

@@ -15,9 +15,9 @@ class CreateTfanswerTable extends Migration
     {
         Schema::create('tfanswers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('quiz_id')->unsigned();
+            $table->integer('quiz_id')->unsigned()->index();
             $table->foreign('quiz_id')->references('id')->on('quizs');
-            $table->integer('question_id')->unsigned();
+            $table->integer('question_id')->unsigned()->index();
             $table->foreign('question_id')->references('id')->on('questions');
             $table->boolean('answer');
             $table->timestamps();
