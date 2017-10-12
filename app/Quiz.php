@@ -15,6 +15,11 @@ class Quiz extends Model
       return $this->belongsTo('App\Category');
     }
 
+    public function teacher()
+    {
+      return $this->belongsTo('App\Teacher');
+    }
+
     public function question()
     {
       return $this->hanMany('App\Question');

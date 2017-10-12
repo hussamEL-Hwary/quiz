@@ -19,9 +19,29 @@ class QuizController extends Controller
 
     public function __construct()
     {
-      $this->middleware('auth:teacher');
+      $this->middleware('auth:teacher')->except('allQuizzes','showOne');
     }
 
+    public function getQuizzesByCategory(&$id)
+    {
+      return Quiz::select(['name','id'])->where('category_id',$id)->orderBy('name')->get();
+    }
+
+    /**
+    *get all quizzes in a specific category
+    *@param category id
+    *@return quiz
+    */
+    public function allQuizzes($id)
+    {
+      $quizzes=$this->getQuizzesByCategory($id);
+      return view('pages.quiz.quizzes',compact('quizzes'));
+    }
+
+    public function showOne(Quiz $quiz)
+    {
+      return view('pages.quiz.show',compact('quiz'));
+    }
     public function show()
     {
       $categories=$this->getAllCategories();

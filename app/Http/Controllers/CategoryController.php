@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth:teacher')->except('showAll');
+    $this->middleware('auth:teacher')->except('showAll','allQuizzes');
   }
 
 /**
@@ -64,5 +64,6 @@ class CategoryController extends Controller
     }
 
   }
+
 
 }

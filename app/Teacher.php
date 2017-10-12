@@ -50,4 +50,9 @@ class teacher extends Authenticatable
       return $this->hasOne('App\TeacherProfile');
     }
 
+    public function quiz()
+    {
+      return $this->hasMany('App\Quiz');
+    }
+
 }
