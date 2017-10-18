@@ -24,7 +24,7 @@ class QuizController extends Controller
 
     public function getQuizzesByCategory(&$id)
     {
-      return Quiz::select(['name','id'])->where('category_id',$id)->orderBy('name')->get();
+      return Quiz::select(['name','id','teacher_id'])->where('category_id',$id)->orderBy('name')->get();
     }
 
     /**
