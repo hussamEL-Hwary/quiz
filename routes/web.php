@@ -12,6 +12,8 @@
 */
 
 Route::get('/','CategoryController@showAll');
+Route::get('/category/{id}','QuizController@allQuizzes');
+Route::get('/quiz/{quiz}','QuizController@showOne');
 Auth::routes();
 //Auth::routes();
 Route::get('/register','Auth\GeneralRegisterController@showRegiterForm')->name('register');
