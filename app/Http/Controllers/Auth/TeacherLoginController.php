@@ -47,11 +47,18 @@ class TeacherLoginController extends Controller
         'email'=>'required|email',
         'password'=>'required'
       ]);
+
+      //if student loged in
+      $this->studentLogout();
+
+
       //try to login
       if(Auth::guard('teacher')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember))
       {
+
          //if success redirect to teacher homepage
          return redirect()->intended(route('teacher.dashboard'));
+
       }
       //if not sucess redirect back with form data and errors
       $errors = ['email' => trans('auth.failed')];
@@ -68,5 +75,14 @@ class TeacherLoginController extends Controller
         session()->invalidate();
 
         return redirect('/');
+    }
+
+    public function studentLogout()
+    {
+      if(Auth::guard('student')->user())
+      {
+        Auth::guard('student')->logout();
+        session()->invalidate();
+      }
     }
 }

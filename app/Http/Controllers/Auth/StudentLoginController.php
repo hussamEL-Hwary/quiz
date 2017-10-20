@@ -47,6 +47,8 @@ class StudentLoginController extends Controller
         'email'=>'required|email',
         'password'=>'required'
       ]);
+
+      $this->teacherLogout();
       //try to login
       if(Auth::guard('student')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember))
       {
@@ -68,5 +70,15 @@ class StudentLoginController extends Controller
         session()->invalidate();
 
         return redirect('/');
+    }
+
+
+    public function teacherLogout()
+    {
+      if(Auth::guard('teacher')->user())
+      {
+        Auth::guard('teacher')->logout();
+        session()->invalidate();
+      }
     }
 }
