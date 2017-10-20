@@ -13,13 +13,13 @@
 			<a class="navbar-header navbar-brand" href="/">Quiz App</a>
 			<div class="collapse navbar-collapse" id="myNavbar">
 			  <ul class="nav navbar-nav navbar-right">
-			    <li><a class='reg' href="#">Register</a></li>
+			    <li><a class='reg' href="/register">Register</a></li>
 					<li class='dropdown'>
 						<a href='#' class='dropdown-toggle element log' data-toggle='dropdown' role='button' aria-haspopup="true"
 						aria-expanded='false'>Login As <span class='caret'></span></a>
 						<ul class='dropdown-menu'>
-							<li><a class='student' href='#'> Student </a></li>
-							<li><a class='teacher' href='#'> Teacher </a></li>
+							<li><a class='student' href='/student/login'> Student </a></li>
+							<li><a class='teacher' href='/teacher/login'> Teacher </a></li>
 						</ul>
 					</li>
 			  </ul>
@@ -27,17 +27,27 @@
 
 			<!-- student nav bar-->
 			@elseif (Auth::guard('student')->user())
-			<a class="navbar-header navbar-brand" href="/">Quiz App</a>
+			<a class="navbar-header navbar-brand" href="/student">Quiz App</a>
 			<div class="collapse navbar-collapse" id="myNavbar">
 			  <ul class="nav navbar-nav navbar-right">
 					<li class='dropdown'>
 						<a href='#' class='dropdown-toggle element' data-toggle='dropdown' role='button' aria-haspopup="true"
-						aria-expanded='false'><img src='{{Auth::guard('student')->User()->profile->avatar}}' alt='profile-img'> Ahmed <span class='caret'></span></a>
+						aria-expanded='false'><img src='{{Auth::guard('student')->User()->profile->avatar}}' alt='profile-img'> {{Auth::guard('student')->User()->first_name}} <span class='caret'></span></a>
 						<ul class='dropdown-menu'>
-							<li><a href='#'> Profile </a></li>
-							<li><a href='#'> Settings </a></li>
-							<li><a href='#'> Teacher </a></li>
-							<li><a href='#'> Logout </a></li>
+							<li><a href='/student/profile/{{Auth::guard('student')->user()->id}}'>
+								<span class="icon"><i class="fa fa-fw fa-user-circle-o"></i></span>
+								Profile </a></li>
+
+							<li><a href='/student/setting'>
+								<span class="icon"><i class="fa fa-fw fa-cog"></i></span>
+								 Settings </a></li>
+							<li><a href='/teacher/login'>
+								<span class="icon"><i class="fa fa-fw fa-user-circle-o"></i></span>
+								 Teacher </a></li>
+								 <li><hr></li>
+							<li><a href='/student/logout'>
+								<span class="icon"><i class="fa fa-fw fa-sign-out"></i></span>
+								 Logout </a></li>
 						</ul>
 					</li>
 			  </ul>
@@ -62,8 +72,9 @@
 								<span class="icon"><i class="fa fa-fw fa-cog"></i></span>
 								 Settings </a></li>
 
-							<li><a href='/student'>
-								<span class="icon"><i class="fa fa-fw fa-arrow-circle-o-up"></i></span>
+							<li><a href='/student/login'>
+								<span class="icon"><i class="fa fa-fw fa-user-circle-o"></i></span>
+
 								 Student </a></li>
 								 <li><hr></li>
 								 <li><a href='/teacher/logout'>
